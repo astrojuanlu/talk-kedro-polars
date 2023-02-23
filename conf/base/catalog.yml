@@ -3,6 +3,16 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
 
-example_iris_data:
-  type: pandas.CSVDataSet
-  filepath: data/01_raw/iris.csv
+labour_force_survey_2018_report_original:
+  type: pandas.GenericDataSet
+  file_format: stata
+  # filepath: data/01_raw/NAM_LFS_2018_PUBLIC.dta
+  filepath: https://nada.nsa.org.na/index.php/catalog/35/download/229
+
+labour_force_survey_2018_report:
+  type: polars.CSVDataSet
+  filepath: data/02_intermediate/NAM_LFS_2018_PUBLIC.csv
+
+labour_force_survey_2018_report_filtered:
+  type: polars.CSVDataSet
+  filepath: data/03_primary/NAM_LFS_2018_PUBLIC_filtered.csv

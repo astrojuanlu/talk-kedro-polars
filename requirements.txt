@@ -2,3 +2,12 @@ jupyter~=1.0
 kedro~=0.18.5
 kedro-datasets[pandas.CSVDataSet]~=1.0.0
 kedro-telemetry~=0.2.0
+
+aiohttp
+black[jupyter]
+jupyterlab
+pandas<2.0
+polars==0.16.8
+pyarrow
+requests
+seaborn
