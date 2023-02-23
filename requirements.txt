@@ -1,0 +1,4 @@
+jupyter~=1.0
+kedro~=0.18.5
+kedro-datasets[pandas.CSVDataSet]~=1.0.0
+kedro-telemetry~=0.2.0
