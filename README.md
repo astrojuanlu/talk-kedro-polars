@@ -1,6 +1,8 @@
 # Talk "Analyze your data at the speed of light with Polars and Kedro"
 
-Talk "Analyze your data at the speed of light with Polars and Kedro".
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astrojuanlu/talk-kedro-polars/HEAD?labpath=data_processing.ipynb)
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/astrojuanlu/talk-kedro-polars)
 
 Created with `kedro new --starter=standalone-datacatalog`.
 
