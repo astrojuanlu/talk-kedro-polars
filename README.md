@@ -4,54 +4,125 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/astrojuanlu/talk-kedro-polars)
 
-Created with `kedro new --starter=standalone-datacatalog`.
+Created with `kedro new`.
 
-## Overview
+## Overview
 
-This is a bare minimum setup for you to use a core component of Kedro in the exploratory phase of a project. Specifically, it enables you to use Kedro to configure and explore data sources in Jupyter notebook through the [DataCatalog](https://kedro.readthedocs.io/en/stable/data/data_catalog.html) feature.
-Later on, you can build a full pipeline using the same configuration.
+This is your new Kedro project, which was generated using `Kedro 0.18.6`.
 
-The project was generated using `Kedro 0.18.5`.
+Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
 
-## Prerequisites
+## Rules and guidelines
 
-To use this project, you need to have `kedro`, `kedro-datasets[pandas.CSVDataSet]` and `jupyter` installed. They are included in the `requirements.txt` file, which can be installed with `pip`:
+In order to get the best out of the template:
 
-```bash
-pip install -r requirements.txt
-```
+* Don't remove any lines from the `.gitignore` file we provide
+* Make sure your results can be reproduced by following a [data engineering convention](https://docs.kedro.org/en/stable/faq/faq.html#what-is-data-engineering-convention)
+* Don't commit data to your repository
+* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
 
-## The example notebook
+## How to install dependencies
 
-After installing the requirements, you can launch Jupyter Notebook server as normal with:
+Declare any dependencies in `src/requirements.txt` for `pip` installation and `src/environment.yml` for `conda` installation.
 
-```bash
-jupyter notebook
-```
-
-At the root directory, you will find an example notebook showing how to instantiate the `DataCatalog` and interact with the included example dataset.
-You can edit the [conf/catalog.yml](./conf/base/catalog.yml) file to add more datasets to the `DataCatalog` for further exploration. To see more examples on how to use the `DataCatalog`, please visit the [DataCatalog documentation](https://kedro.readthedocs.io/en/latest/data/data_catalog.html).
-
-## Transition to a full Kedro project
-
-After configuring and exploring the data sources in Jupyter notebooks, you can transition to a full Kedro project through the following steps:
-
-1. Create a new empty Kedro project in a new directory
-
-```bash
-kedro new
-```
-
-Let's assume that the new project is created at `/path/to/your/project`.
-
-2. Copy the `conf/` and `data/` directories over to the new project
+To install them, run:
 
 ```
-cp -fR {conf,data} `/path/to/your/project`
+pip install -r src/requirements.txt
 ```
 
-Congratulations! You now have a Kedro project setup with a fully functional `DataCatalog`. You can then explore the documentation on how to write [nodes and pipelines](https://kedro.readthedocs.io/en/latest/nodes_and_pipelines/nodes.html) to process this data.
+## How to run your Kedro pipeline
 
-### Limitation
+You can run your Kedro project with:
 
-If you stick with this project structure without transitioning to a full project, you will only be able to use Kedro's library components such as the `DataCatalog`, `Node` and `Pipeline` manually. You won't be able to use features available in a full Kedro project, including project-based CLI commands such as `kedro run`.
+```
+kedro run
+```
+
+## How to test your Kedro project
+
+Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
+
+```
+kedro test
+```
+
+To configure the coverage threshold, go to the `.coveragerc` file.
+
+## Project dependencies
+
+To generate or update the dependency requirements for your project:
+
+```
+kedro build-reqs
+```
+
+This will `pip-compile` the contents of `src/requirements.txt` into a new file `src/requirements.lock`. You can see the output of the resolution by opening `src/requirements.lock`.
+
+After this, if you'd like to update your project requirements, please update `src/requirements.txt` and re-run `kedro build-reqs`.
+
+[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
+
+## How to work with Kedro and notebooks
+
+> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, `catalog`, and `startup_error`.
+>
+> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r src/requirements.txt` you will not need to take any extra steps before you use them.
+
+### Jupyter
+To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
+
+```
+pip install jupyter
+```
+
+After installing Jupyter, you can start a local notebook server:
+
+```
+kedro jupyter notebook
+```
+
+### JupyterLab
+To use JupyterLab, you need to install it:
+
+```
+pip install jupyterlab
+```
+
+You can also start JupyterLab:
+
+```
+kedro jupyter lab
+```
+
+### IPython
+And if you want to run an IPython session:
+
+```
+kedro ipython
+```
+
+### How to convert notebook cells to nodes in a Kedro project
+You can move notebook code over into a Kedro project structure using a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#release-5-0-0) and Kedro CLI commands.
+
+By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`:
+
+```
+kedro jupyter convert <filepath_to_my_notebook>
+```
+> *Note:* The name of the Python file matches the name of the original notebook.
+
+Alternatively, you may want to transform all your notebooks in one go. Run the following command to convert all notebook files found in the project root directory and under any of its sub-folders:
+
+```
+kedro jupyter convert --all
+```
+
+### How to ignore notebook output cells in `git`
+To automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
+
+> *Note:* Your output cells will be retained locally.
+
+## Package your Kedro project
+
+[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)

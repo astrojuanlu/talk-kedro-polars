@@ -1,0 +1,22 @@
+black[jupyter]~=22.0
+flake8>=3.7.9, <5.0
+ipython>=7.31.1, <8.0; python_version < '3.8'
+ipython~=8.10; python_version >= '3.8'
+isort~=5.0
+jupyter~=1.0
+jupyterlab_server>=2.11.1, <2.16.0
+#jupyterlab~=3.0, <3.6.0
+jupyterlab  # Can I have the latest version of jupyterlab?
+kedro~=0.18.6
+kedro-telemetry~=0.2.0
+nbstripout~=0.4
+pytest-cov~=3.0
+pytest-mock>=1.7.1, <2.0
+pytest~=7.2
+
+kedro-datasets[pandas.CSVDataSet,polars.CSVDataSet] @ git+https://github.com/wmoreiraa/kedro-plugins@4448b9f#subdirectory=kedro-datasets
+aiohttp  # Needed?
+pyarrow
+requests  # Needed?
+seaborn
+wordcloud

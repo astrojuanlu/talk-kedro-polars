@@ -1,18 +1,35 @@
 # Here you can define all your data sets by using simple YAML syntax.
 #
 # Documentation for this file format can be found in "The Data Catalog"
-# Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-labour_force_survey_2018_report_original:
-  type: pandas.GenericDataSet
-  file_format: stata
-  # filepath: data/01_raw/NAM_LFS_2018_PUBLIC.dta
-  filepath: https://nada.nsa.org.na/index.php/catalog/35/download/229
-
-labour_force_survey_2018_report:
+openrepair-0_3-events-raw:
   type: polars.CSVDataSet
-  filepath: data/02_intermediate/NAM_LFS_2018_PUBLIC.csv
+  filepath: data/01_raw/OpenRepairData_v0.3_aggregate_202210.csv
+  load_args:
+    dtypes:
+      product_age: ${pl_Float64}
+      group_identifier: ${pl_Utf8}
+    try_parse_dates: true
 
-labour_force_survey_2018_report_filtered:
+openrepair-0_3-categories:
   type: polars.CSVDataSet
-  filepath: data/03_primary/NAM_LFS_2018_PUBLIC_filtered.csv
+  filepath: data/01_raw/OpenRepairData_v0.3_Product_Categories.csv
+
+openrepair-0_3-combined:
+  type: polars.CSVDataSet
+  filepath: data/02_intermediate/openrepairdata_v0.3_combined.csv
+  load_args:
+    dtypes:
+      product_age: ${pl_Float64}
+      group_identifier: ${pl_Utf8}
+    try_parse_dates: true
+
+openrepair-0_3:
+  type: polars.CSVDataSet
+  filepath: data/03_primary/openrepairdata_v0.3_clean.csv
+  load_args:
+    dtypes:
+      product_age: ${pl_Float64}
+      group_identifier: ${pl_Utf8}
+    try_parse_dates: true
