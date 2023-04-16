@@ -14,7 +14,7 @@ pytest-cov~=3.0
 pytest-mock>=1.7.1, <2.0
 pytest~=7.2
 
-kedro-datasets[pandas.CSVDataSet,polars.CSVDataSet] @ git+https://github.com/wmoreiraa/kedro-plugins@4448b9f#subdirectory=kedro-datasets
+kedro-datasets[pandas.CSVDataSet,polars.CSVDataSet] @ git+https://github.com/kedro-org/kedro-plugins@feat/upgrade-polars#subdirectory=kedro-datasets
 aiohttp  # Needed?
 pyarrow
 requests  # Needed?
