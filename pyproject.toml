@@ -23,6 +23,11 @@ docs = [
   "Jinja2<3.1.0",
   "myst-parser~=0.17.2",
 ]
+dev = [
+  "jupyterlab",
+  "jupyterlab-lsp",
+  "python-lsp-server[all]",
+]
 
 [tool.setuptools]
 include-package-data = false

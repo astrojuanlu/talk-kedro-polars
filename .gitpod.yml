@@ -4,7 +4,7 @@ image:
 tasks:
   - name: Install Python project with dependencies
     init: |
-      python -m pip install -e .
+      python -m pip install -e .[dev]
       pushd data/01_raw \
         && curl -O https://openrepair.org/wp-content/uploads/2023/02/OpenRepairData_v0.3_aggregate_202210.zip \
         && unzip OpenRepairData_v0.3_aggregate_202210.zip \
@@ -14,7 +14,6 @@ tasks:
   - name: Launch JupyterLab
     init: |
       gp sync-await dependencies
-      python -m pip install -r dev-requirements.txt
     # Inspiration: https://github.com/jupyterlab/jupyterlab/blob/a920f33/.gitpod.yml
     # and https://github.com/gitpod-io/gitpod/issues/16306
     command: |
