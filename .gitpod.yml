@@ -16,7 +16,8 @@ tasks:
       jupyter lab --port 8888 \
         --ServerApp.IdentityProvider.token='' \
         --ServerApp.allow_origin='*' \
-        --ServerApp.tornado_settings='{"headers": {"Content-Security-Policy": "frame-ancestors *"}}'
+        --ServerApp.tornado_settings='{"headers": {"Content-Security-Policy": "frame-ancestors *"}}' \
+        --no-browser
 
 ports:
   - port: 8888
