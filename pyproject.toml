@@ -1,3 +1,40 @@
+[build-system]
+requires = [ "setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "talk_kedro_polars"
+version = "0.1"
+dynamic = ["dependencies"]
+
+[project.scripts]
+talk-kedro-polars = "talk_kedro_polars.__main__:main"
+
+[project.optional-dependencies]
+docs = [
+  "docutils<0.18.0",
+  "sphinx~=3.4.3",
+  "sphinx_rtd_theme==0.5.1",
+  "nbsphinx==0.8.1",
+  "nbstripout~=0.4",
+  "sphinx-autodoc-typehints==1.11.1",
+  "sphinx_copybutton==0.3.1",
+  "ipykernel>=5.3, <7.0",
+  "Jinja2<3.1.0",
+  "myst-parser~=0.17.2",
+]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
+namespaces = false
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
+
 [tool.kedro]
 package_name = "talk_kedro_polars"
 project_name = "talk-kedro-polars"
