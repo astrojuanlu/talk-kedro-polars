@@ -4,17 +4,17 @@ image:
 tasks:
   - name: Install Python project with dependencies
     init: |
-      pip install -e .
+      python -m pip install -e .
       gp sync-done dependencies
 
   - name: Launch JupyterLab
     init: |
       gp sync-await dependencies
-      pip install -r dev-requirements.txt
+      python -m pip install -r dev-requirements.txt
     # Inspiration: https://github.com/jupyterlab/jupyterlab/blob/a920f33/.gitpod.yml
     # and https://github.com/gitpod-io/gitpod/issues/16306
     command: |
-      jupyter lab --port 8888 \
+      python -m jupyter lab --port 8888 \
         --LabApp.token='' \
         --LabApp.allow_origin='*' \
         --LabApp.tornado_settings='{"headers": {"Content-Security-Policy": "frame-ancestors *"}}' \
