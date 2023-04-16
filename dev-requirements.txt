@@ -1,0 +1,3 @@
+jupyterlab
+jupyterlab-lsp
+python-lsp-server[all]

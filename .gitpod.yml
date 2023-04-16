@@ -3,4 +3,13 @@ image:
 
 tasks:
   - name: Install Python project with dependencies
-    init: pip install -e .
+    init: |
+      pip install -e .
+      gp sync-done dependencies
+
+  - name: Launch JupyterLab
+    init: |
+      gp sync-await dependencies
+      pip install -r dev-requirements.txt
+    command: |
+      jupyter lab
