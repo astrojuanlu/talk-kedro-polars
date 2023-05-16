@@ -38,14 +38,19 @@ https://kedro.readthedocs.io/en/stable/kedro_project_setup/settings.html."""
 # from kedro.io import DataCatalog
 # DATA_CATALOG_CLASS = DataCatalog
 
-from kedro.config import TemplatedConfigLoader
-
 import polars as pl
+from kedro.config import OmegaConfigLoader
+from omegaconf import OmegaConf
 
-CONFIG_LOADER_CLASS = TemplatedConfigLoader
+if not OmegaConf.has_resolver("polars"):
+    OmegaConf.register_new_resolver("polars", lambda attr: getattr(pl, attr))
+
+
+CONFIG_LOADER_CLASS = OmegaConfigLoader
+
+# See https://github.com/kedro-org/kedro/issues/2583
 CONFIG_LOADER_ARGS = {
-    "globals_dict": {
-        "pl_Float64": pl.Float64,
-        "pl_Utf8": pl.Utf8,
-    },
+    "config_patterns": {
+        "catalog": ["catalog.yml", "**/catalog.yml"],
+    }
 }

@@ -8,8 +8,8 @@ openrepair-0_3-events-raw:
   filepath: data/01_raw/OpenRepairData_v0.3_aggregate_202210.csv
   load_args:
     dtypes:
-      product_age: ${pl_Float64}
-      group_identifier: ${pl_Utf8}
+      product_age: ${polars:Float64}
+      group_identifier: ${polars:Utf8}
     try_parse_dates: true
 
 openrepair-0_3-categories:
@@ -21,8 +21,8 @@ openrepair-0_3-combined:
   filepath: data/02_intermediate/openrepairdata_v0.3_combined.csv
   load_args:
     dtypes:
-      product_age: ${pl_Float64}
-      group_identifier: ${pl_Utf8}
+      product_age: ${polars:Float64}
+      group_identifier: ${polars:Utf8}
     try_parse_dates: true
 
 openrepair-0_3:
@@ -30,6 +30,6 @@ openrepair-0_3:
   filepath: data/03_primary/openrepairdata_v0.3_clean.csv
   load_args:
     dtypes:
-      product_age: ${pl_Float64}
-      group_identifier: ${pl_Utf8}
+      product_age: ${polars:Float64}
+      group_identifier: ${polars:Utf8}
     try_parse_dates: true

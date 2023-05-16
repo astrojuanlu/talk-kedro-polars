@@ -43,7 +43,7 @@ dependencies = {file = "requirements.txt"}
 [tool.kedro]
 package_name = "talk_kedro_polars"
 project_name = "talk-kedro-polars"
-kedro_init_version = "0.18.6"
+kedro_init_version = "0.18.8"
 
 [tool.isort]
 profile = "black"
